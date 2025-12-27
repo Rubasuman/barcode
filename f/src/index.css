@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(circle at 20% 20%, #f4f7ff, #eef2ff 35%, #fdfdff 70%);
+  color: #0f172a;
+}
+
+code {
+  font-family: 'Space Grotesk', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+}

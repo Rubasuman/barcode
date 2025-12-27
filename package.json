@@ -1,0 +1,29 @@
+{
+  "name": "barcode-system",
+  "version": "1.0.0",
+  "description": "Full-stack Barcode Generating System",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "start": "concurrently \"npm run backend:start\" \"npm run frontend:build\"",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:start": "cd backend && npm start",
+    "frontend:dev": "cd f && npm run dev",
+    "frontend:build": "cd f && npm run build",
+    "install-all": "npm install && cd backend && npm install && cd ../f && npm install",
+    "setup": "npm run install-all && echo 'Setup complete! Run npm run dev to start development.'"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "git": "^0.1.5",
+    "html2canvas": "^1.4.1"
+  },
+  "keywords": [
+    "barcode",
+    "react",
+    "express",
+    "supabase"
+  ],
+  "author": "",
+  "license": "ISC"
+}

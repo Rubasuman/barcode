@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Barcode Sticker Generator
 
 A focused app to design and print barcode stickers for your products. Built with React (Vite) and `react-barcode`. Backend/Supabase are optional and not required for sticker generation.
@@ -171,3 +172,6 @@ MIT License - feel free to use this project for personal or commercial purposes.
 ## Support
 
 For issues and questions, please open an issue on GitHub.
+=======
+# barcode
+>>>>>>> f984105108a7de1ac657213eca256f803db39bbb

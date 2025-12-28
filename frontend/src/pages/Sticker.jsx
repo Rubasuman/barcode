@@ -3,7 +3,21 @@ import Barcode from 'react-barcode';
 import * as XLSX from 'xlsx';
 import html2canvas from 'html2canvas';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+// Detect API URL: use env var or fallback based on environment
+const getApiUrl = () => {
+  // If running on Netlify, VITE_API_URL will be set in build env
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  // Development: use localhost
+  if (import.meta.env.DEV) {
+    return 'http://localhost:5000/api';
+  }
+  // Production fallback: assume backend is on same domain or use window.location
+  return `${window.location.origin}/api`;
+};
+
+const API_BASE_URL = getApiUrl();
 
 function Sticker() {
   const [form, setForm] = useState({

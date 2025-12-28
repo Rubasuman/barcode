@@ -52,8 +52,14 @@ function Sticker() {
       return;
     }
     
-    const printContent = labelGrid.cloneNode(true);
-    const printWindow = window.open('', '', 'width=900,height=700');
+    const printWindow = window.open('', 'barcode-print', 'width=900,height=700');
+    
+    // Fallback if popup is blocked
+    if (!printWindow || printWindow.closed || typeof printWindow.closed === 'undefined') {
+      alert('Print popup was blocked. Using browser print instead. Press Ctrl+P to customize.');
+      setTimeout(() => window.print(), 100);
+      return;
+    }
     
     const html = `
       <!DOCTYPE html>
@@ -107,15 +113,22 @@ function Sticker() {
           setTimeout(() => {
             window.print();
             setTimeout(() => window.close(), 500);
-          }, 800);
+          }, 1200);
         </script>
       </body>
       </html>
     `;
     
-    printWindow.document.open();
-    printWindow.document.write(html);
-    printWindow.document.close();
+    try {
+      printWindow.document.open();
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.focus();
+    } catch (e) {
+      console.error('Print window error:', e);
+      alert('Error opening print window. Falling back to browser print.');
+      window.print();
+    }
   };
 
   const captureAndUploadLabels = async () => {

@@ -260,18 +260,25 @@ function Sticker() {
     }
   };
 
-  const handleSaveAndPrint = async () => {
+  const handleSave = async () => {
     if (!hasGenerated) {
       alert('Please click Generate Stickers first.');
       return;
     }
-    // First capture and upload images for all labels
+    // Capture and upload images for all labels
     const uploaded = await captureAndUploadLabels();
     if (uploaded.length === 0) {
-      // If uploads failed entirely, don't print
+      alert('Failed to save stickers.');
       return;
     }
-    // Optionally also save metadata in bulk with image URLs (already saved during upload)
+    alert(`Successfully saved ${uploaded.length} sticker(s)!`);
+  };
+
+  const handlePrint = () => {
+    if (!hasGenerated) {
+      alert('Please click Generate Stickers first.');
+      return;
+    }
     printLabels();
   };
 
@@ -399,7 +406,8 @@ function Sticker() {
 
               <div style={{ display: 'flex', gap: '1rem' }}>
                 <button className="btn btn-secondary" type="button" onClick={() => setHasGenerated(true)} disabled={!map.barcode}>Generate Stickers</button>
-                <button className="btn btn-primary" type="button" onClick={handleSaveAndPrint} disabled={!hasGenerated || !map.barcode}>Save & Print Stickers</button>
+                <button className="btn btn-primary" type="button" onClick={handleSave} disabled={!hasGenerated || !map.barcode}>Save Stickers</button>
+                <button className="btn btn-primary" type="button" onClick={handlePrint} disabled={!hasGenerated || !map.barcode}>Print Stickers</button>
               </div>
             </>
           ) : (
@@ -468,7 +476,8 @@ function Sticker() {
 
           <div style={{ display: 'flex', gap: '1rem' }}>
             <button className="btn btn-secondary" type="button" onClick={() => setHasGenerated(true)}>Generate Stickers</button>
-            <button className="btn btn-primary" type="button" onClick={handleSaveAndPrint} disabled={!hasGenerated}>Save & Print Stickers</button>
+            <button className="btn btn-primary" type="button" onClick={handleSave} disabled={!hasGenerated}>Save Stickers</button>
+            <button className="btn btn-primary" type="button" onClick={handlePrint} disabled={!hasGenerated}>Print Stickers</button>
           </div>
           </>
           )}
